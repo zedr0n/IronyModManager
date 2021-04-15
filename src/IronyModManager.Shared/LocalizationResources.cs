@@ -382,6 +382,7 @@ namespace IronyModManager.Shared
                 public const string Prefix = "Conflict_Solver.CompareSelectorContextMenu.";
                 public const string OpenFile = Prefix + "OpenFile";
                 public const string OpenDirectory = Prefix + "OpenDirectory";
+                public const string SetAsBase = Prefix + "SetAsBase";
             }
             public static class ContextMenu
             {

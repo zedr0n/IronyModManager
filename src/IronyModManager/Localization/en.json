@@ -285,7 +285,8 @@
         },
         "CompareSelectorContextMenu": {
             "OpenFile": "Open File",
-            "OpenDirectory": "Open Directory"
+            "OpenDirectory": "Open Directory",
+            "SetAsBase" : "Set as base for 3-way merge"
         },
         "ContextMenu": {
             "CopyAll": "Copy All",

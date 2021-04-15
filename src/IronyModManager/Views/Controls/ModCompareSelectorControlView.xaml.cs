@@ -84,6 +84,11 @@ namespace IronyModManager.Views.Controls
                             {
                                 Header = ViewModel.OpenFile,
                                 Command = ViewModel.OpenFileCommand
+                            },
+                            new MenuItem()
+                            {
+                                Header = ViewModel.SetAsBase,
+                                Command = ViewModel.SetAsBaseCommand 
                             }
                         };
                         if (!ViewModel.ConflictPath.EndsWith(Shared.Constants.ZipExtension, StringComparison.OrdinalIgnoreCase) &&

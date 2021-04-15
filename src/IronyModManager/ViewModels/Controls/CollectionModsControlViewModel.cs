@@ -877,6 +877,9 @@ namespace IronyModManager.ViewModels.Controls
                 default:
                     break;
             }
+
+            if (activeGame != null && activeGame.IncludeVanilla && SelectedMods.Any(m => m.Name == "Vanilla"))
+                SetSelectedMods(SelectedMods.Where(m => m.Name == "Vanilla").Concat(SelectedMods.Where(m => m.Name != "Vanilla")).ToObservableCollection());
         }
 
         /// <summary>

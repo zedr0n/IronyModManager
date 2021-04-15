@@ -160,6 +160,19 @@ namespace IronyModManager.ViewModels.Controls
         public virtual ReactiveCommand<Unit, Unit> OpenFileCommand { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the base for 3-way merge
+        /// </summary>
+        /// <value>The base for 3-way merge.</value>
+        [StaticLocalization(LocalizationResources.Conflict_Solver.CompareSelectorContextMenu.SetAsBase)]
+        public virtual string SetAsBase { get; protected set; }
+        
+        /// <summary>
+        /// Gets or sets the base for 3-way merge command
+        /// </summary>
+        /// <value>The base for 3-way merge command.</value>
+        public virtual ReactiveCommand<Unit, Unit> SetAsBaseCommand { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the right selected definition.
         /// </summary>
         /// <value>The right selected definition.</value>
@@ -326,6 +339,12 @@ namespace IronyModManager.ViewModels.Controls
                 }
             }).DisposeWith(disposables);
 
+            SetAsBaseCommand = ReactiveCommand.Create(() =>
+            {
+                if (!string.IsNullOrWhiteSpace(ConflictPath))
+                    BaseSelectedDefinition = RightSelectedDefinition;
+            });
+            
             hotkeyPressedHandler.Subscribe(m =>
             {
                 SelectDefinitionByHotkey(m.Hotkey);
