@@ -1,3 +1,6 @@
+This is a fork of the amazing [IronyModManager](https://github.com/bcssov/IronyModManager) by @bccsov
+
+-----------------------------------------------------------------------------------------------------
 # Documentation
 Check the [Wiki](https://github.com/bcssov/IronyModManager/wiki)
 
