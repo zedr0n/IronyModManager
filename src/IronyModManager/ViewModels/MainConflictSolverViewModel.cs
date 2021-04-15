@@ -687,7 +687,7 @@ namespace IronyModManager.ViewModels
                     ModCompareSelector.CollectionName = SelectedModCollection.Name;
                     ModCompareSelector.IsBinaryConflict = IsBinaryConflict = conflicts?.FirstOrDefault()?.ValueType == ValueType.Binary;
                     ModCompareSelector.Definitions = conflicts;
-                    MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition);
+                    MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition, ModCompareSelector.BaseSelectedDefinition);
                     MergeViewer.SetText(string.Empty, string.Empty, true);
                     MergeViewer.ExitEditMode();
                     EvalViewerVisibility();
@@ -713,7 +713,7 @@ namespace IronyModManager.ViewModels
                     if (s != null && IsConflictSolverAvailable)
                     {
                         MergeViewer.EditingYaml = s.Type.StartsWith(Shared.Constants.LocalizationDirectory);
-                        MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition);
+                        MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition, ModCompareSelector.BaseSelectedDefinition);
                         MergeViewer.SetText(s.Code, MergeViewer.RightSide);
                         MergeViewer.ExitEditMode();
                         if (!IsBinaryConflict)
@@ -745,7 +745,7 @@ namespace IronyModManager.ViewModels
                     if (s != null && IsConflictSolverAvailable)
                     {
                         MergeViewer.EditingYaml = s.Type.StartsWith(Shared.Constants.LocalizationDirectory);
-                        MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition);
+                        MergeViewer.SetSidePatchMod(ModCompareSelector.LeftSelectedDefinition, ModCompareSelector.RightSelectedDefinition, ModCompareSelector.BaseSelectedDefinition);
                         MergeViewer.SetText(MergeViewer.LeftSide, s.Code);
                         MergeViewer.ExitEditMode();
                         if (!IsBinaryConflict)

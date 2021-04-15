@@ -76,8 +76,9 @@ namespace IronyModManager.Services
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
+        /// <param name="baseDefinition">The base.</param>
         /// <returns>IExternalEditorFiles.</returns>
-        public virtual IExternalEditorFiles GetFiles(IDefinition left, IDefinition right)
+        public virtual IExternalEditorFiles GetFiles(IDefinition left, IDefinition right, IDefinition baseDefinition = null)
         {
             static string getFilename(IDefinition definition)
             {
@@ -89,6 +90,11 @@ namespace IronyModManager.Services
             model.LeftDiff.Create(model.LeftDiff.GetTempFileName(getFilename(left)));
             model.RightDiff = DIResolver.Get<ITempFile>();
             model.RightDiff.Create(model.RightDiff.GetTempFileName(getFilename(right)));
+            if (baseDefinition != null)
+            {
+                model.BaseDiff = DIResolver.Get<ITempFile>();
+                model.BaseDiff.Create(model.BaseDiff.GetTempFileName(getFilename(baseDefinition)));
+            }
             return model;
         }
 
@@ -97,13 +103,14 @@ namespace IronyModManager.Services
         /// </summary>
         /// <param name="leftLocation">The left location.</param>
         /// <param name="rightLocation">The right location.</param>
+        /// <param name="baseLocation">The base location.</param>
         /// <returns>System.String.</returns>
-        public virtual string GetLaunchArguments(string leftLocation, string rightLocation)
+        public virtual string GetLaunchArguments(string leftLocation, string rightLocation, string baseLocation = null)
         {
             var opts = Get();
             if (!string.IsNullOrWhiteSpace(opts.ExternalEditorLocation) && !string.IsNullOrWhiteSpace(opts.ExternalEditorParameters))
             {
-                var launchArgs = Smart.Format($"{opts.ExternalEditorParameters}", new { Left = $"\"{leftLocation}\"", Right = $"\"{rightLocation}\"" });
+                var launchArgs = Smart.Format($"{opts.ExternalEditorParameters}", new { Left = $"\"{leftLocation}\"", Right = $"\"{rightLocation}\"", Base = $"\"{baseLocation}\"" });
                 return launchArgs;
             }
             return string.Empty;

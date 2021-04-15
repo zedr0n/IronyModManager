@@ -39,16 +39,18 @@ namespace IronyModManager.Services.Common
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
+        /// <param name="baseDefinition">The base.</param>
         /// <returns>IExternalEditorFiles.</returns>
-        IExternalEditorFiles GetFiles(IDefinition left, IDefinition right);
+        IExternalEditorFiles GetFiles(IDefinition left, IDefinition right, IDefinition baseDefinition = null);
 
         /// <summary>
         /// Gets the launch arguments.
         /// </summary>
         /// <param name="leftLocation">The left location.</param>
         /// <param name="rightLocation">The right location.</param>
+        /// <param name="baseLocation">The base location.</param>
         /// <returns>System.String.</returns>
-        string GetLaunchArguments(string leftLocation, string rightLocation);
+        string GetLaunchArguments(string leftLocation, string rightLocation, string baseLocation = null);
 
         /// <summary>
         /// Saves the specified external editor.

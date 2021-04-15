@@ -89,6 +89,11 @@ namespace IronyModManager.ViewModels.Controls
         private readonly Stack<string> undoStack = new();
 
         /// <summary>
+        /// The base definition
+        /// </summary>
+        private IDefinition baseDefinition;
+        
+        /// <summary>
         /// The left definition
         /// </summary>
         private IDefinition leftDefinition;
@@ -577,10 +582,12 @@ namespace IronyModManager.ViewModels.Controls
         /// </summary>
         /// <param name="leftDefinition">The left definition.</param>
         /// <param name="rightDefinition">The right definition.</param>
-        public virtual void SetSidePatchMod(IDefinition leftDefinition, IDefinition rightDefinition)
+        /// <param name="baseDefinition">The right definition.</param>
+        public virtual void SetSidePatchMod(IDefinition leftDefinition, IDefinition rightDefinition, IDefinition baseDefinition = null)
         {
             this.leftDefinition = leftDefinition;
             this.rightDefinition = rightDefinition;
+            this.baseDefinition = baseDefinition;
             LeftSidePatchMod = modPatchCollectionService.IsPatchMod(leftDefinition?.ModName);
             RightSidePatchMod = modPatchCollectionService.IsPatchMod(rightDefinition?.ModName);
         }
@@ -1462,12 +1469,15 @@ namespace IronyModManager.ViewModels.Controls
             var opts = externalEditorService.Get();
             var left = leftDefinition;
             var right = rightDefinition;
+            var b = baseDefinition;
             if (left != null && right != null && !string.IsNullOrWhiteSpace(opts.ExternalEditorLocation) && !string.IsNullOrWhiteSpace(opts.ExternalEditorParameters) && File.Exists(opts.ExternalEditorLocation))
             {
-                var files = externalEditorService.GetFiles(left, right);
+                var files = externalEditorService.GetFiles(left, right, b);
                 files.LeftDiff.Text = LeftSide;
                 files.RightDiff.Text = RightSide;
-                var arguments = externalEditorService.GetLaunchArguments(files.LeftDiff.File, files.RightDiff.File);
+                if (b != null)
+                    files.BaseDiff.Text = b.Code.ReplaceTabs();
+                var arguments = externalEditorService.GetLaunchArguments(files.LeftDiff.File, files.RightDiff.File, files.BaseDiff?.File);
                 if (await appAction.RunAsync(opts.ExternalEditorLocation, arguments))
                 {
                     var title = localizationManager.GetResource(LocalizationResources.Conflict_Solver.Editor.Title);

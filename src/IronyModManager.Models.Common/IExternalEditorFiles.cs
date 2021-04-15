@@ -30,6 +30,12 @@ namespace IronyModManager.Models.Common
         #region Properties
 
         /// <summary>
+        /// Gets or sets the base difference.
+        /// </summary>
+        /// <value>The base difference.</value>
+        ITempFile BaseDiff { get; set; }
+
+        /// <summary>
         /// Gets or sets the left difference.
         /// </summary>
         /// <value>The left difference.</value>

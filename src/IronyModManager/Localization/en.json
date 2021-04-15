@@ -365,7 +365,7 @@
             "Title": "External Editor Options",
             "EditorExecutable": "Editor Executable",
             "EditorArgs": "Editor Args",
-            "EditorArgsPlaceholder": "Example: leftFile:{Left} rightFile:{Right}"
+            "EditorArgsPlaceholder": "Example: leftFile:{Left} rightFile:{Right} baseFile:{Base}"
         },
         "Game": {
             "Title": "Game Options",

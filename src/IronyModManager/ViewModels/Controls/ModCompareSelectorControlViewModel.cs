@@ -122,6 +122,12 @@ namespace IronyModManager.ViewModels.Controls
         public virtual bool IsBinaryConflict { get; set; }
 
         /// <summary>
+        /// Gets or sets the base selected definition.
+        /// </summary>
+        /// <value>The base selected definition.</value>
+        public virtual IDefinition BaseSelectedDefinition { get; set; }
+
+        /// <summary>
         /// Gets or sets the left selected definition.
         /// </summary>
         /// <value>The left selected definition.</value>
@@ -247,6 +253,7 @@ namespace IronyModManager.ViewModels.Controls
                         await Task.Delay(50, token);
                         if (!token.IsCancellationRequested)
                         {
+                            BaseSelectedDefinition = VirtualDefinitions.SingleOrDefault(v => v.ModName == "Vanilla");
                             LeftSelectedDefinition = virtualDefinitions.FirstOrDefault(p => p != newDefinition && p != priorityDefinition.Definition);
                             RightSelectedDefinition = newDefinition;
                         }
@@ -268,6 +275,7 @@ namespace IronyModManager.ViewModels.Controls
                         await Task.Delay(50, token);
                         if (!token.IsCancellationRequested)
                         {
+                            BaseSelectedDefinition = VirtualDefinitions.SingleOrDefault(v => v.ModName == "Vanilla");
                             LeftSelectedDefinition = virtualDefinitions.ElementAt(0);
                             RightSelectedDefinition = virtualDefinitions.ElementAt(1);
                         }
