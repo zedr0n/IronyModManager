@@ -32,6 +32,12 @@ namespace IronyModManager.Models.Common
         bool? CloseAppAfterGameLaunch { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [include base game as a vanilla mod].
+        /// </summary>
+        /// <value><c>true</c> if [include base game as a vanilla mod]; otherwise, <c>false</c>.</value>
+        bool? IncludeVanilla { get; set; }
+        
+        /// <summary>
         /// Gets or sets the custom mod directory.
         /// </summary>
         /// <value>The custom mod directory.</value>

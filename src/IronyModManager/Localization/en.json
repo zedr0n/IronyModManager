@@ -374,6 +374,7 @@
             "GameArgs": "Game Launch Options",
             "RefreshMods": "Refresh Descriptors Before Playing",
             "CloseAfterLaunch": "Close After Launching Game",
+            "IncludeVanilla" : "Include the base game as a vanilla mod",
             "AutoConfigure": "Configure All...",
             "CustomModPath": "Custom Mod Directory"
         },

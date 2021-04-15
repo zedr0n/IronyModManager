@@ -485,6 +485,7 @@ namespace IronyModManager.Services
             {
                 throw new ArgumentNullException(nameof(game));
             }
+
             var mods = Cache.Get<IEnumerable<IMod>>(new CacheGetParameters() { Region = ModsCacheRegion, Prefix = game.Type, Key = GetModsCacheKey(ignorePatchMods) });
             if (mods != null)
             {
@@ -542,6 +543,18 @@ namespace IronyModManager.Services
                         mod.Game = game.Type;
                         result.Add(mod);
                     }
+                }
+
+                if (game.IncludeVanilla)
+                {
+                    var mod = Mapper.Map<IMod>(DIResolver.Get<IModObject>());
+                    mod.Name = "Vanilla";
+                    mod.FileName = String.Empty;
+                    mod.FullPath = game.BaseSteamGameDirectory;
+                    mod.IsValid = true;
+                    mod.Game = game.Type;
+                    mod.DescriptorFile = string.Empty;
+                    result.Add(mod);
                 }
                 Cache.Set(new CacheAddParameters<IEnumerable<IMod>>() { Region = ModsCacheRegion, Prefix = game.Type, Key = GetModsCacheKey(ignorePatchMods), Value = result });
                 return result;

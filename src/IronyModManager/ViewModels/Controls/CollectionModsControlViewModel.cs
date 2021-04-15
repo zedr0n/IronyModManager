@@ -1790,7 +1790,7 @@ namespace IronyModManager.ViewModels.Controls
             // modCollection sort order
             if (modCollection?.Mods.Count() > 0 && Mods?.Count() > 0)
             {
-                var mods = Mods.Where(p => modCollection.Mods.Any(a => a.Equals(p.DescriptorFile, StringComparison.OrdinalIgnoreCase)));
+                var mods = Mods.Where(p => modCollection.Mods.Any(a => a != null && a.Equals(p.DescriptorFile, StringComparison.OrdinalIgnoreCase)));
                 if (mods.Any())
                 {
                     var ascending = mods.OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).Select(p => p.DescriptorFile);

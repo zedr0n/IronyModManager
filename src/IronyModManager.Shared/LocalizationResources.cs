@@ -496,6 +496,7 @@ namespace IronyModManager.Shared
                 public const string GameArgs = Prefix + "GameArgs";
                 public const string RefreshMods = Prefix + "RefreshMods";
                 public const string CloseAfterLaunch = Prefix + "CloseAfterLaunch";
+                public const string IncludeVanilla = Prefix + "IncludeVanilla";
                 public const string AutoConfigure = Prefix + "AutoConfigure";
                 public const string CustomModPath = Prefix + "CustomModPath";
             }

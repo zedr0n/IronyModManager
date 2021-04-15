@@ -111,6 +111,11 @@ namespace IronyModManager.ViewModels.Controls
         private IDisposable checkForPrereleaseChanged;
 
         /// <summary>
+        /// Include base game as vanilla mod changed
+        /// </summary>
+        private IDisposable includeVanillaChanged;
+        
+        /// <summary>
         /// The close game changed
         /// </summary>
         private IDisposable closeGameChanged;
@@ -269,6 +274,13 @@ namespace IronyModManager.ViewModels.Controls
         /// <value>The close application after game launch.</value>
         [StaticLocalization(LocalizationResources.Options.Game.CloseAfterLaunch)]
         public virtual string CloseAppAfterGameLaunch { get; protected set; }
+        
+        /// <summary>
+        /// Gets or sets the close application after game launch.
+        /// </summary>
+        /// <value>The close application after game launch.</value>
+        [StaticLocalization(LocalizationResources.Options.Game.IncludeVanilla)]
+        public virtual string IncludeVanilla { get; protected set; }
 
         /// <summary>
         /// Gets or sets the close command.
@@ -903,6 +915,7 @@ namespace IronyModManager.ViewModels.Controls
             game.LaunchArguments = Game.LaunchArguments;
             game.RefreshDescriptors = Game.RefreshDescriptors;
             game.CloseAppAfterGameLaunch = Game.CloseAppAfterGameLaunch;
+            game.IncludeVanilla = Game.IncludeVanilla;
             bool dirChanged = game.UserDirectory != Game.UserDirectory;
             game.UserDirectory = Game.UserDirectory;
             bool customDirectoryChanged = game.CustomModDirectory != Game.CustomModDirectory;
@@ -971,6 +984,11 @@ namespace IronyModManager.ViewModels.Controls
                 SaveGame();
             }).DisposeWith(Disposables);
             closeGameChanged = this.WhenAnyValue(p => p.Game.CloseAppAfterGameLaunch).Where(p => !isGameReloading).Subscribe(s =>
+            {
+                SaveGame();
+            }).DisposeWith(Disposables);
+            includeVanillaChanged = this.WhenAnyValue(p => p.Game.IncludeVanilla).Where(p => !isGameReloading).Subscribe(
+            s =>
             {
                 SaveGame();
             }).DisposeWith(Disposables);

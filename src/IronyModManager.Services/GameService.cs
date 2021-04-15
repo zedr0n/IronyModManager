@@ -264,6 +264,7 @@ namespace IronyModManager.Services
             model.UserDirectory = game.UserDirectory;
             model.RefreshDescriptors = game.RefreshDescriptors;
             model.CloseAppAfterGameLaunch = game.CloseAppAfterGameLaunch;
+            model.IncludeVanilla = game.IncludeVanilla;
             model.Type = game.Type;
             model.CustomModDirectory = string.Empty;
             return model;
@@ -481,12 +482,14 @@ namespace IronyModManager.Services
             game.RemoteSteamUserDirectory = gameType.RemoteSteamUserDirectory;
             game.Abrv = gameType.Abrv;
             game.CloseAppAfterGameLaunch = true;
+            game.IncludeVanilla = false;
             game.CustomModDirectory = string.Empty;
             var setExeLocation = true;
             var setUserDirLocation = true;
             if (gameSettings != null)
             {
                 game.CloseAppAfterGameLaunch = gameSettings.CloseAppAfterGameLaunch.GetValueOrDefault(true);
+                game.IncludeVanilla = gameSettings.IncludeVanilla.GetValueOrDefault(false);
                 game.RefreshDescriptors = gameSettings.RefreshDescriptors;
                 if (!string.IsNullOrWhiteSpace(gameSettings.LaunchArguments))
                 {
@@ -589,6 +592,7 @@ namespace IronyModManager.Services
             settings.ExecutableLocation = game.ExecutableLocation;
             settings.LaunchArguments = game.LaunchArguments;
             settings.CloseAppAfterGameLaunch = game.CloseAppAfterGameLaunch;
+            settings.IncludeVanilla = game.IncludeVanilla;
             settings.RefreshDescriptors = game.RefreshDescriptors;
             settings.UserDirectory = game.UserDirectory;
             settings.CustomModDirectory = game.CustomModDirectory;
