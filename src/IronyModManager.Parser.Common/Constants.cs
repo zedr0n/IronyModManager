@@ -4,7 +4,7 @@
 // Created          : 02-16-2020
 //
 // Last Modified By : Mario
-// Last Modified On : 03-11-2021
+// Last Modified On : 05-15-2021
 // ***********************************************************************
 // <copyright file="Constants.cs" company="Mario">
 //     Mario
@@ -265,9 +265,19 @@ namespace IronyModManager.Parser.Common
             public const string Sound = "sound";
 
             /// <summary>
+            /// The buildings
+            /// </summary>
+            public static readonly string Buildings = MergePath(CommonPath, "buildings");
+
+            /// <summary>
             /// The component tags
             /// </summary>
             public static readonly string ComponentTags = MergePath(CommonPath, "component_tags");
+
+            /// <summary>
+            /// The diplomatic actions
+            /// </summary>
+            public static readonly string DiplomaticActions = MergePath(CommonPath, "diplomatic_actions");
 
             /// <summary>
             /// The diplo phrases
@@ -278,6 +288,11 @@ namespace IronyModManager.Parser.Common
             /// The districts
             /// </summary>
             public static readonly string Districts = MergePath(CommonPath, "districts");
+
+            /// <summary>
+            /// The government authorities
+            /// </summary>
+            public static readonly string GovernmentAuthorities = MergePath(CommonPath, "governments", "authorities");
 
             /// <summary>
             /// The map galaxy
@@ -343,6 +358,11 @@ namespace IronyModManager.Parser.Common
             /// The start screen messages
             /// </summary>
             public static readonly string StartScreenMessages = MergePath(CommonPath, "start_screen_messages");
+
+            /// <summary>
+            /// The technology
+            /// </summary>
+            public static readonly string Technology = MergePath(CommonPath, "technology");
 
             /// <summary>
             /// The terraform
