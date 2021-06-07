@@ -4,7 +4,7 @@
 // Created          : 06-19-2020
 //
 // Last Modified By : Mario
-// Last Modified On : 05-25-2021
+// Last Modified On : 06-06-2021
 // ***********************************************************************
 // <copyright file="ModMergeService.cs" company="Mario">
 //     Mario
@@ -49,7 +49,7 @@ namespace IronyModManager.Services
         /// <summary>
         /// The maximum zips to merge
         /// </summary>
-        private const int MaxZipsToMerge = 8;
+        private const int MaxZipsToMerge = 4;
 
         /// <summary>
         /// The zip lock
@@ -416,7 +416,7 @@ namespace IronyModManager.Services
                     await ModWriter.WriteDescriptorToStreamAsync(new ModWriterParameters()
                     {
                         Mod = newMod
-                    }, ms);
+                    }, ms, true);
                     ms.Seek(0, SeekOrigin.Begin);
                     modMergeCompressExporter.AddFile(new ModMergeCompressExporterParameters()
                     {
